@@ -1,0 +1,129 @@
+ed by Prompt
+# A useful .gitignore for Node.js, Python, and Java projects.
+
+# General
+# -------------------------------------------------------------------
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor specific
+.idea/
+.vscode/
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js
+# -------------------------------------------------------------------
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Test and coverage reports
+coverage/
+.nyc_output/
+
+
+# Python
+# -------------------------------------------------------------------
+# Virtual Environments
+venv/
+env/
+.venv/
+.env/
+venv.bak/
+env.bak/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pytest
+.pytest_cache/
+.tox/
+.nox/
+
+# mypy
+.mypy_cache/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+
+
+# Java / Maven / Gradle
+# -------------------------------------------------------------------
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Build tool output directories
+target/
+build/
+.gradle/
+
+# IDE files
+.project
+.classpath
+.settings/
+*.iml
+
+# VM crash logs
+hs_err_pid*
