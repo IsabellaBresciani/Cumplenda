@@ -1,0 +1,266 @@
+.calendar-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.nav-button {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background: #764ba2;
+    transform: scale(1.1);
+}
+
+.month-year h2 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.today-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.2s ease;
+}
+
+.today-button:hover {
+    background: #218838;
+}
+
+.calendar-grid {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.day-name {
+    padding: 15px 8px;
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+    font-size: 14px;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #e9ecef;
+}
+
+.calendar-day {
+    background: white;
+    min-height: 100px;
+    padding: 8px;
+    position: relative;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background: #f8f9fa;
+}
+
+.calendar-day.other-month {
+    background: #f8f9fa;
+    color: #adb5bd;
+}
+
+.calendar-day.today {
+    background: #e3f2fd;
+    border: 2px solid #2196f3;
+}
+
+.calendar-day.has-birthday {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.day-number {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.birthday-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.birthday-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 152, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.birthday-icon {
+    font-size: 12px;
+}
+
+.birthday-name {
+    font-weight: 500;
+    color: #e65100;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.birthday-age {
+    background: #ff9800;
+    color: white;
+    padding: 1px 4px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 16px;
+    text-align: center;
+}
+
+/* Birthday Summary */
+.birthday-summary {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.birthday-summary h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.upcoming-birthdays {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upcoming-birthday {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.upcoming-birthday:hover {
+    background: #e9ecef;
+}
+
+.upcoming-icon {
+    font-size: 16px;
+}
+
+.upcoming-name {
+    font-weight: 500;
+    color: #333;
+    min-width: 150px;
+}
+
+.upcoming-date {
+    color: #666;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+.upcoming-age {
+    color: #ff9800;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .calendar-view {
+        padding: 10px;
+    }
+    
+    .calendar-day {
+        min-height: 80px;
+        padding: 4px;
+    }
+    
+    .day-number {
+        font-size: 14px;
+    }
+    
+    .birthday-indicator {
+        font-size: 10px;
+        padding: 1px 4px;
+    }
+    
+    .month-year h2 {
+        font-size: 20px;
+    }
+    
+    .upcoming-birthday {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .upcoming-name {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-day {
+        min-height: 60px;
+        padding: 2px;
+    }
+    
+    .birthday-name {
+        display: none;
+    }
+    
+    .birthday-indicator {
+        justify-content: center;
+        min-width: 20px;
+    }
+}

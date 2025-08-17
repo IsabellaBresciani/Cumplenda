@@ -20,6 +20,11 @@ function LoginForm() {
     const handleSubmit  = async (e) => {
        try {
         e.preventDefault();
+        console.log('Submitting login form with data:', formData);
+        if (!formData.email || !formData.password) {
+            Toast({ icon: 'error', title: 'Error', text: 'Por favor, completa todos los campos.' });
+            return;
+        }
         setLoading(true);
         const data = await login(formData)
         localStorage.setItem("isAuthenticated", "true");

@@ -1,0 +1,139 @@
+.confirm-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.confirm-dialog {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    animation: dialogSlideIn 0.3s ease-out;
+}
+
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.confirm-header {
+    padding: 24px 24px 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.confirm-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.confirm-icon {
+    font-size: 20px;
+}
+
+.confirm-body {
+    padding: 16px 24px;
+}
+
+.confirm-message {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px 24px 24px;
+    justify-content: flex-end;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 80px;
+    justify-content: center;
+}
+
+.confirm-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.confirm-button.cancel {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+}
+
+.confirm-button.cancel:hover:not(:disabled) {
+    background: #e9ecef;
+}
+
+.confirm-button.confirm {
+    background: #007bff;
+    color: white;
+}
+
+.confirm-button.confirm:hover:not(:disabled) {
+    background: #0056b3;
+}
+
+.confirm-button.confirm.danger {
+    background: #dc3545;
+}
+
+.confirm-button.confirm.danger:hover:not(:disabled) {
+    background: #c82333;
+}
+
+.confirm-button.confirm.warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.confirm-button.confirm.warning:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+.loading-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

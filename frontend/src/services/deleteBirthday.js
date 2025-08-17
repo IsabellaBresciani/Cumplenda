@@ -1,18 +1,18 @@
 import baseURL from "./baseURL";
 
-function getBirthdayList(authToken) {
-    const endpoint = '/api/birthdays/';
+function deleteBirthday(authToken, birthdayId) {
+    const endpoint = `/api/birthdays/${birthdayId}`;
     const url = baseURL() + endpoint;
     
-
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + authToken
     };
     
+    console.log('🚀 Deleting birthday with ID:', birthdayId);
     
     return fetch(url, { 
-        method: 'GET',
+        method: 'DELETE',
         headers: headers
     })
     .then(res => {
@@ -20,18 +20,23 @@ function getBirthdayList(authToken) {
         console.log('🔍 Response ok:', res.ok);
         
         if (!res.ok) {
-            // Intentar leer el cuerpo de la respuesta para más detalles
             return res.text().then(text => {
                 console.log('🔍 Error response body:', text);
                 throw new Error(`HTTP ${res.status}: ${text}`);
             });
         }
+        
+        // DELETE might return empty response
+        if (res.status === 204) {
+            return { message: 'Birthday deleted successfully' };
+        }
+        
         return res.json();
     })
     .catch(error => {
-        console.error('❌ Error in getBirthdayList:', error);
+        console.error('❌ Error in deleteBirthday:', error);
         throw error;
     });
 }
 
-export default getBirthdayList;
+export default deleteBirthday;

@@ -1,0 +1,29 @@
+.home-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  min-width: 0;
+  height: 100vh; /* Constrain height for proper scrolling */
+  box-sizing: border-box;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding: 16px;
+    height: auto;
+    min-height: 100vh;
+  }
+}

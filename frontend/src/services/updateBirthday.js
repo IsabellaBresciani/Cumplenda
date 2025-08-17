@@ -1,26 +1,34 @@
 import baseURL from "./baseURL";
 
-function getBirthdayList(authToken) {
-    const endpoint = '/api/birthdays/';
+function updateBirthday(authToken, birthdayId, birthdayData) {
+    const endpoint = `/api/birthdays/${birthdayId}`;
     const url = baseURL() + endpoint;
     
-
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + authToken
     };
     
+    const requestBody = {
+        first_name: birthdayData.name,
+        last_name: birthdayData.lastName || null,
+        birthday_date: birthdayData.birth_date,
+        notify: birthdayData.notify !== undefined ? birthdayData.notify : true,
+        notes: birthdayData.notes || null
+    };
+    
+    console.log('🚀 Updating birthday with data:', requestBody);
     
     return fetch(url, { 
-        method: 'GET',
-        headers: headers
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(requestBody)
     })
     .then(res => {
         console.log('🔍 Response status:', res.status);
         console.log('🔍 Response ok:', res.ok);
         
         if (!res.ok) {
-            // Intentar leer el cuerpo de la respuesta para más detalles
             return res.text().then(text => {
                 console.log('🔍 Error response body:', text);
                 throw new Error(`HTTP ${res.status}: ${text}`);
@@ -29,9 +37,9 @@ function getBirthdayList(authToken) {
         return res.json();
     })
     .catch(error => {
-        console.error('❌ Error in getBirthdayList:', error);
+        console.error('❌ Error in updateBirthday:', error);
         throw error;
     });
 }
 
-export default getBirthdayList;
+export default updateBirthday;
