@@ -36,7 +36,9 @@ Birthday.init(
   {
     sequelize,
     modelName: 'Birthday',
-    tableName: 'birthdays'
+    tableName: 'birthdays',
+    timestamps: true,   
+    underscored: true 
   }
 );
 

@@ -9,7 +9,7 @@ class BirthdaysController {
      */
     async createBirthday(req, res) {
         try {
-            const userId = req.user.id; // Obtenido del middleware de autenticación
+            const userId = req.user.userId; 
             const birthdayData = req.body;
 
             if (!birthdayData.first_name || !birthdayData.birthday_date) {
@@ -24,19 +24,55 @@ class BirthdaysController {
         }
     }
 
-    /**
-     * Obtiene todos los cumpleaños del usuario autenticado.
-     */
     async getAllBirthdays(req, res) {
-        try {
-            const userId = req.user.id;
-            const birthdays = await birthdayDao.getBirthdaysByUserId(userId);
-            res.status(200).json(birthdays); 
-        } catch (error) {
-            console.error('Error fetching birthdays:', error);
-            res.status(500).json({ message: 'An error occurred while fetching birthdays.' });
+    try {
+        // Validar que el usuario esté autenticado
+        console.log(req.user.userId)
+
+        const userId = req.user.userId;
+        console.log(`Fetching birthdays for user ID: ${userId}`);
+        
+        const birthdays = await birthdayDao.getBirthdaysByUserId(userId);
+        
+        // Validar que se obtuvieron datos
+        if (!birthdays) {
+            return res.status(404).json({ 
+                message: 'No se encontraron cumpleaños para este usuario.' 
+            });
         }
+
+        // Respuesta exitosa con metadatos útiles
+        res.status(200).json({
+            success: true,
+            count: birthdays.length,
+            data: birthdays,
+            message: birthdays.length === 0 ? 'No hay cumpleaños registrados' : 'Cumpleaños obtenidos exitosamente'
+        });
+
+    } catch (error) {
+        console.error('Error fetching birthdays:', error);
+        
+        // Diferentes tipos de errores
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ 
+                message: 'Error de validación en los datos.',
+                error: error.message 
+            });
+        }
+        
+        if (error.name === 'DatabaseError') {
+            return res.status(503).json({ 
+                message: 'Error de base de datos. Intenta más tarde.' 
+            });
+        }
+        
+        // Error genérico
+        res.status(500).json({ 
+            message: 'Ocurrió un error interno del servidor.',
+            ...(process.env.NODE_ENV === 'development' && { error: error.message })
+        });
     }
+}
 
     /**
      * Obtiene un cumpleaños específico por su ID.
@@ -44,7 +80,7 @@ class BirthdaysController {
      */
     async getBirthdayById(req, res) {
         try {
-            const userId = req.user.id;
+            const userId = req.user.userId;
             const { id } = req.params; // Obtiene el ID de la URL (ej: /birthdays/123)
 
             const birthday = await birthdayDao.getBirthdayById(id, userId);
@@ -66,7 +102,7 @@ class BirthdaysController {
      */
     async updateBirthday(req, res) {
         try {
-            const userId = req.user.id;
+            const userId = req.user.userId;
             const { id } = req.params;
             const updateData = req.body;
 
@@ -92,7 +128,7 @@ class BirthdaysController {
      */
     async deleteBirthday(req, res) {
         try {
-            const userId = req.user.id;
+            const userId = req.user.userId;
             const { id } = req.params;
 
             const affectedRows = await birthdayDao.deleteBirthday(id, userId);

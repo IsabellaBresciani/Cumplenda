@@ -6,8 +6,19 @@ const birthdaysController = require('../controllers/birthdaysController');
 const authMiddleware = require('../middleware/authMiddleware'); // ¡Importante! Middleware para proteger rutas
 
 // --- Todas las rutas están protegidas y requieren que el usuario esté logueado ---
-router.use(authMiddleware);
-
+// Verificar si el middleware se importa correctamente
+console.log('🔍 ROUTES DEBUG: Importing auth middleware...');
+try {
+    const authMiddleware = require('../middleware/authMiddleware'); // o ../middlewares/
+    console.log('✅ Auth middleware imported successfully:', typeof authMiddleware);
+    
+    // --- Todas las rutas están protegidas y requieren que el usuario esté logueado ---
+    router.use(authMiddleware);
+    console.log('✅ Auth middleware applied to all routes');
+    
+} catch (error) {
+    console.error('❌ Error importing auth middleware:', error.message);
+}
 // --- Rutas CRUD para Cumpleaños ---
 
 // POST /birthdays/ -> Crear un nuevo cumpleaños

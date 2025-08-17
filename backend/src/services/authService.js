@@ -35,7 +35,7 @@ class AuthService {
         const authToken = jwt.sign(
            payload,
             secretKey,
-            { expiresIn: '4h' }
+            { expiresIn: '24h' }
         );
 
         return authToken;
