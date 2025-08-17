@@ -1,9 +1,10 @@
 ![alt text](image.png)
 
 
-# Repositorio
+# Recursos
 * Link Video: TP5 DEMO ADR - Isabella Bresciani.mov
 * PDF: ADR PRACTICA N° 5 - Bresciani Isabella.pdf
+* Codigo: deploy.sh | backend/ | frontend/ | docker-compose.yml | init.sql
 
 # Temas de la unidad
 a. Docker.

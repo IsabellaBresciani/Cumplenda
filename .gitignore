@@ -103,7 +103,7 @@ wheels/
 .coverage.*
 htmlcov/
 
-
+azureuser.pm
 # Java / Maven / Gradle
 # -------------------------------------------------------------------
 # Compiled class files
