@@ -34,5 +34,3 @@ CREATE TABLE cumplenda.birthdays (
     -- Index for faster sorting and filtering by birthday date
     INDEX idx_birthday_date (birthday_date)
 );
-
-

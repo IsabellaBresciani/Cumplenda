@@ -2,11 +2,6 @@
 const birthdayDao = require('../daos/BirthdayDao');
 
 class BirthdaysController {
-
-    /**
-     * Crea un nuevo cumpleaños.
-     * Espera los datos del cumpleaños en req.body y el ID del usuario en req.user.id.
-     */
     async createBirthday(req, res) {
         try {
             const userId = req.user.userId; 

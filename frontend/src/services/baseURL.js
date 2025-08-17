@@ -1,3 +1,3 @@
-const baseURL = () => "http://localhost:3003";
+const baseURL = () => "";
 
 export default baseURL;

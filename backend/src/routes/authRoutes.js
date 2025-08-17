@@ -4,14 +4,30 @@ const authController = require('../controllers/authController');
 
 //--------------------------------  ENDPOINTS  --------------------------------
 //--------------------------------  ENDPOINTS  --------------------------------
-router.post('/login', (req, res, next) => {
-    console.log('🔍 Login route hit:', req.body); 
-    authController.login(req, res, next);
+router.post('/login', async (req, res, next) => {
+    try {
+        console.log('🔍 Login route hit:', req.body); 
+        await authController.login(req, res, next);
+    } catch (error) {
+        console.error('❌ Login error:', error);
+        res.status(500).json({ 
+            error: 'Internal server error',
+            message: error.message 
+        });
+    }
 });
 
-router.post('/register', (req, res, next) => {
-    console.log('🔍 Register route hit:', req.body);
-    authController.register(req, res, next);
+router.post('/register', async (req, res, next) => {
+    try {
+        console.log('🔍 Register route hit:', req.body);
+        await authController.register(req, res, next);
+    } catch (error) {
+        console.error('❌ Register error:', error);
+        res.status(500).json({ 
+            error: 'Internal server error',
+            message: error.message 
+        });
+    }
 });
 
 module.exports = router;

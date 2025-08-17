@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const BadRequestException = require('../exceptions/BadRequestException.js');
-const userDao = require('../daos/userDao');
+const userDao = require('../daos/UserDao.js');
 
 class AuthService {
 
